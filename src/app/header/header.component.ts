@@ -12,11 +12,4 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
   }
-
-  onNavigateToRecipes() {
-    this.featureSelected.emit('recipes');
-  }
-  onNavigateToShoppingList() {
-    this.featureSelected.emit('shopping_list');
-  }
 }
