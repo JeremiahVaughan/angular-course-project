@@ -7,16 +7,19 @@ import {ShoppingListService} from '../shopping-list/shopping-list.service';
   providedIn: 'root'
 })
 export class RecipeService {
-  recipeSelected: Recipe = null;
   private recipes: Recipe[] = [
-    new Recipe( 'A Test Recipe', 'This is simply', 'https://www.gimmesomeoven.com/' +
-      'wp-content/uploads/2014/03/Cajun-Jambalaya-Recipe-with-Andouille-Sausage-Shrimp-and-Chicken-3-1.jpg',
+    new Recipe( 'A Test Recipe', 'This is simply', 'https://www.bk.com/sites/default/files/PATTY_1800X760.mp4',
       [
         new Ingredient('Lettuce', 3),
         new Ingredient('noodles', 4)
       ]),
-    new Recipe( 'Another Test Recipe', 'This is simply', 'https://www.drdavidludwig.com/' +
-      'wp-content/uploads/2017/01/1-RIS_6IbCLYv1X3bzYW1lmA.jpeg',
+    new Recipe( 'Another Test Recipe', 'This is simply', 'https://www.bk.com/sites/default/files/PATTY_1800X760.mp4',
+      [
+        new Ingredient('Whole Burger', 40),
+        new Ingredient('Pizza Slices', 500)
+      ]),
+
+    new Recipe( 'BURGER', 'The best burger in all the world', 'https://www.bk.com/sites/default/files/PATTY_1800X760.mp4',
       [
         new Ingredient('Whole Burger', 40),
         new Ingredient('Pizza Slices', 500)
