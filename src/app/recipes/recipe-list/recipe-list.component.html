@@ -13,6 +13,7 @@
         *ngFor="let recipeElement of recipes; let i = index"
         [recipe]="recipeElement"
         [index]="i"
+        [routerLink]="['/recipes', i]"
        ></app-recipe-item>
     </div>
   </div>
