@@ -27,7 +27,6 @@ export class RecipeListComponent implements OnInit, OnDestroy {
       );
   }
 
-
   onNewRecipe() {
     this.router.navigate(['new'], {relativeTo: this.route});
   }
@@ -36,3 +35,5 @@ export class RecipeListComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 }
+
+
