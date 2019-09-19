@@ -11,7 +11,7 @@ export class RecipeService {
   recipesChanged = new Subject<Recipe[]>();
 
   private recipes: Recipe[] = [
-    new Recipe( 'A Test Recipe', 'This is simply', 'https://www.bk.com/sites/default/files/PATTY_1800X760.mp4',
+    new Recipe( 'A Tests Recipe', 'This is simply', 'https://www.bk.com/sites/default/files/PATTY_1800X760.mp4',
       [
         new Ingredient('Lettuce', 3),
         new Ingredient('noodles', 4)
