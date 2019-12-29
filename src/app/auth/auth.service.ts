@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {catchError, tap} from "rxjs/operators";
 import {BehaviorSubject, Subject, throwError} from "rxjs";
@@ -15,47 +15,48 @@ export interface AuthResponseData {
 }
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class AuthService {
 
     user = new BehaviorSubject<User>(null);
 
-  constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient) {
+    }
 
-  signUp(userEmail: string, userPassword: string) {
-      return this.http.post<AuthResponseData>(
-          'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAvHlEALzVDt035oMbr76AAGmW55U2VBBM',
-          {
-              email: userEmail,
-              password: userPassword,
-              returnSecureToken: true
-          }
-      ).pipe(catchError(this.handleError),
-          tap(resData => {
-              this.handleAuthentication(
-                  resData.email,
-                  resData.localId,
-                  resData.idToken,
-                  +resData.expiresIn)
-      }));
-  }
+    signUp(userEmail: string, userPassword: string) {
+        return this.http.post<AuthResponseData>(
+            'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAvHlEALzVDt035oMbr76AAGmW55U2VBBM',
+            {
+                email: userEmail,
+                password: userPassword,
+                returnSecureToken: true
+            }
+        ).pipe(catchError(this.handleError),
+            tap(resData => {
+                this.handleAuthentication(
+                    resData.email,
+                    resData.localId,
+                    resData.idToken,
+                    +resData.expiresIn)
+            }));
+    }
 
     login(userEmail: string, userPassword: string) {
-      return this.http.post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAvHlEALzVDt035oMbr76AAGmW55U2VBBM',
-          {
-              email: userEmail,
-              password: userPassword,
-              returnSecureToken: true
-          }).pipe(catchError(this.handleError),
-          tap(resData => {
-              this.handleAuthentication(
-                  resData.email,
-                  resData.localId,
-                  resData.idToken,
-                  +resData.expiresIn)
-          })
-      );
+        return this.http.post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAvHlEALzVDt035oMbr76AAGmW55U2VBBM',
+            {
+                email: userEmail,
+                password: userPassword,
+                returnSecureToken: true
+            }).pipe(catchError(this.handleError),
+            tap(resData => {
+                this.handleAuthentication(
+                    resData.email,
+                    resData.localId,
+                    resData.idToken,
+                    +resData.expiresIn)
+            })
+        );
     }
 
     private handleAuthentication(
@@ -63,16 +64,16 @@ export class AuthService {
         userId: string,
         token: string,
         expiresIn: number) {
-      const expirationDate = new Date(
-          new Date().getTime() + expiresIn * 1000
-      );
-      const user = new User(
-          email,
-          userId,
-          token,
-          expirationDate
-      );
-      this.user.next(user);
+        const expirationDate = new Date(
+            new Date().getTime() + expiresIn * 1000
+        );
+        const user = new User(
+            email,
+            userId,
+            token,
+            expirationDate
+        );
+        this.user.next(user);
     }
 
     private handleError(errorRes: HttpErrorResponse) {
