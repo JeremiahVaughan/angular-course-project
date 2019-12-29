@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 
 import {RecipeService} from "../recipes/recipe.service";
 import {Recipe} from "../recipes/recipe.model";
@@ -27,11 +27,6 @@ export class DataStorageService {
     }
 
     fetchRecipes() {
-        this.authService.user.pipe(
-            take(1),
-            exhaustMap(user => {
-
-            }));
         return this.http
             .get<Recipe[]>(
                 'https://ng-course-recipe-book-8f10a.firebaseio.com/recipes.json'
@@ -48,6 +43,6 @@ export class DataStorageService {
                 tap<Recipe[]>(recipes => {
                     this.recipeService.setRecipes(recipes);
                 })
-            )
+            );
     }
 }
